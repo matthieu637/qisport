@@ -1,0 +1,27 @@
+####################################################
+####################################################
+#    		      QI SPORT                     #
+#               JEU WEB SUR LE SPORT               #
+####################################################
+####################################################
+
+
+
+
+Répondez à des questions sur l'actualité sportive et
+mesuré votre quotient intellectuel sportif. 
+Exemple d'utilisation : http://neo.dyndns-web.com/~matthieu/fac/EDT/
+Build : http://matthieu637.github.com/qisport/#Install 
+
+
+Le code est actuellement soumis à la licence MIT.
+
+De plus, il utilise des librairies de la Apache 
+Foundation soumises à cette license :                                                     
+http://www.apache.org/licenses/LICENSE-2.0    
+Et les drivers de connexion à postgresql
+soumis à la licence BSD :
+http://jdbc.postgresql.org/license.html
+
+
+

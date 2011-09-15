@@ -1,0 +1,202 @@
+/*copyright by kitgraphiquegratuit.org*/
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #191919;
+	text-align: center
+}
+
+#conteneur {
+	margin: 0 auto 0;
+	position: relative;
+	width: 1024px;
+	position: relative;
+	text-align: left;
+}
+
+#contenu {
+	width: 1024px;
+	display: table;
+	background: url(images/fondsite.png)
+}
+
+#header {
+	height: 118px;
+	background: url(images/header.png) no-repeat top;
+}
+
+#left {
+	float: left;
+	width: 218px;
+	padding: 0 0 0 37px;
+	color: #fff;
+}
+
+#right {
+	width: 720px;
+	min-height: 510px;
+	margin: 0 0 0 256px;
+	color: #595959
+}
+
+#pied {
+	background: url(images/piedsite.png) no-repeat;
+	height: 28px;
+	width: 1024px;
+	margin: 0 auto;
+	padding: 0;
+	clear: both;
+}
+
+a {
+	color: #c10a0a;
+	text-decoration: underline;
+	outline: none
+}
+
+a:hover {
+	color: #595959;
+	text-decoration: none;
+}
+
+h2 {
+	color: #c10a0a;
+	text-decoration: none;
+	outline: none;
+	font: bold italic 13px "trebuchet ms";
+}
+
+img,p,h1,h2,h3,h4,h5,h6,Span,object,table,td,tr {
+	border: 0;
+	margin: 0;
+	padding: 0
+}
+
+a,input {
+	position: relative;
+	z-index: 1;
+}
+
+.menuhaut {
+	background: url(images/menuhaut.png);
+	width: 209px;
+	height: 27px;
+	padding: 7px 0 0 0;
+	font: bold 12px "trebuchet ms";
+	color: #fff;
+	text-align: center;
+	margin: 10px 0 0 0
+}
+
+.menuhaut p {
+	color: #969696;
+}
+
+#left ul {
+	margin: 0;
+	padding: 0;
+	width: 209px;
+	color: #969696;
+	font: small-caps 0.7em Helvetica;
+	text-decoration: none;
+	list-style: none;
+}
+
+#left ul li a {
+	display: block;
+	height: 20px;
+	line-height: 20px;
+	color: #969696;
+	text-decoration: none;
+	background: url(images/bouton.png);
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+	outline: none;
+}
+
+#left ul li.item_menu {
+	height: 20px;
+	line-height: 20px;
+	color: #969696;
+	background: url(images/bouton.png);
+	text-align: center;
+}
+
+form.connexion {
+	height: 100%;
+	line-height: 20px;
+	color: #969696;
+	text-decoration: none;
+	background: url(images/bouton.png);
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	font: small-caps 0.8em Helvetica;
+	width: 190px;
+	padding-left: 10px;
+}
+
+p.menu_height {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#left ul li a:hover {
+	color: #fff;
+	background: url(images/boutonhover.png)
+}
+
+.menubas {
+	background: url(images/menubas.png);
+	width: 209px;
+	height: 17px;
+}
+
+p.copyright,p.copyright a {
+	font: bold italic 10px "trebuchet ms";
+	color: #fff;
+	text-decoration: none;
+}
+
+p.copyright a:hover {
+	color: #c10a0a;
+}
+
+div#statistiques {
+	height: 100%;
+	background: url(images/bouton.png);
+	font: small-caps 0.8em Helvetica;
+	color: #969696;
+	width: 190px;
+	padding-left: 10px;
+	text-align: center;
+}
+
+table.classement_user,table.classement_user td,table.classement_user th
+	{
+	border: black 1px solid;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+table.classement_user th {
+	border: black 1px solid;
+	color: #c10a0a;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+table.classement,table.classement td {
+	border: black 1px solid;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+table.classement th {
+	border: black 1px solid;
+	color: #c10a0a;
+	border-collapse: collapse;
+	text-align: center;
+}

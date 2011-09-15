@@ -1,0 +1,11 @@
+
+<Files "variables.php">
+Order Allow,Deny
+Deny from All
+</Files>
+
+<Files "antibot.font">
+Order Allow,Deny
+Deny from All
+</Files>
+

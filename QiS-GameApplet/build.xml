@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="QiS-GameApplet" default="jar" basedir=".">
+
+	<property name="peanuts_lib" location="../Peanuts_Library/" />
+	<property name="qis_commons" location="../QiS-GameCommons/" />
+
+	<path id="classpath">
+		<pathelement location="${peanuts_lib}/bin/" />
+		<pathelement location="${qis_commons}/bin/" />
+	</path>
+
+	<target name="init">
+		<echo>Appel de build GameCommons</echo>
+		<ant dir="${qis_commons}" target="compile">
+		</ant>
+		<echo>Suppression des anciens fichiers compiles</echo>
+		<delete dir="bin/"/>
+		<mkdir dir="bin/" />
+	</target>
+
+	<target name="compile" depends="init" description="Compile the source.">
+		<echo>Compilation de l'applet</echo>
+		<javac destdir="bin/" optimize="on" debug="on" nowarn="off" source="1.6" target="1.6" encoding="iso-8859-1">
+			<src path="src" />
+			<classpath refid="classpath"/>
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile">
+		<echo>Creation de l'archive jar</echo>
+		<jar destfile="applet.jar">
+			<fileset dir="bin"/>
+			<fileset dir="${peanuts_lib}/bin/" includes="com/peanuts/client/"/>
+			<fileset dir="${peanuts_lib}/bin/" includes="com/peanuts/components/" />
+			<fileset dir="${peanuts_lib}/bin/" includes="com/peanuts/server/packets/" />
+			<fileset dir="${qis_commons}/bin/"/>
+		</jar>
+	</target>
+
+</project>

@@ -1,0 +1,30 @@
+
+SERVER SSH
+	debug false applet & server
+
+SITE	
+	js color
+	bouton ma position
+	validation html
+	profil pour chaques joueurs avec classement
+	supprimer admin classement
+	email inscription
+	compter ban
+	login bloqué
+	page construction classement annexes
+	classement bug 20
+
+
+FORUM :
+	connexion forum
+
+Application :
+	préférences enregistré
+	
+SERVER :
+	Questionsuite ... hack
+	changer fenetre
+	joker
+	accents
+
+

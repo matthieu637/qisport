@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="QiS-GameCommons" default="jar" basedir=".">
+
+	<property name="peanuts_lib" location="../Peanuts_Library/" />
+
+	<target name="init">
+		<echo>Appel de build Peanuts Library</echo>
+		<ant dir="${peanuts_lib}" target="compile">
+		</ant>
+		<echo>Suppression des anciens fichiers compiles de GameCommons</echo>
+		<delete dir="bin/" />
+		<mkdir dir="bin/" />
+	</target>
+
+	<target name="compile" depends="init">
+		<javac destdir="bin/" optimize="on" debug="on" nowarn="off" source="1.6" target="1.6" encoding="iso-8859-1">
+			<src path="src" />
+			<classpath path="${peanuts_lib}/bin/" />
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile">
+		<echo>Creation de l'archive QiS-GameCommons.jar</echo>
+		<jar destfile="QiS-GameCommons.jar">
+			<fileset dir="bin" />
+		</jar>
+	</target>
+
+</project>

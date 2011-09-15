@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Peanuts_Library" default="jar" basedir=".">
+
+	<target name="init">
+		<echo>Suppression des anciens fichiers compiles de Peanuts Library</echo>
+		<delete dir="bin/" />
+		<mkdir dir="bin/" />
+	</target>
+
+	<path id="lib_classpath">
+		<fileset dir="lib/">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<target name="compile" depends="init">
+		<javac destdir="bin/" optimize="on" debug="on" nowarn="off" source="1.6" target="1.6" encoding="iso-8859-1">
+
+			<src path="src" />
+			<classpath refid="lib_classpath" />
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile">
+		<echo>Creation de l'archive peanuts.jar</echo>
+		<jar destfile="peanuts.jar">
+			<fileset dir="bin" />
+		</jar>
+	</target>
+
+</project>

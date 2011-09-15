@@ -1,0 +1,7 @@
+CREATE USER 'qisport'@'localhost';
+
+CREATE DATABASE qisport_db;
+
+GRANT SELECT , INSERT , UPDATE , DELETE , CREATE , DROP , INDEX , ALTER , CREATE TEMPORARY TABLES , CREATE VIEW , EVENT, TRIGGER, SHOW VIEW , CREATE ROUTINE, ALTER ROUTINE, EXECUTE ON `qisport\_db` . * TO 'qisport'@'localhost';
+
+SET PASSWORD FOR 'qisport'@'localhost' = PASSWORD( 'cronos' );

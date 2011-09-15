@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="QiS-GameServer" default="scripts" basedir=".">
+
+	<property name="peanuts_lib" location="../Peanuts_Library/" />
+	<property name="qis_commons" location="../QiS-GameCommons/" />
+
+	<path id="classpath">
+		<pathelement location="${peanuts_lib}/bin/" />
+		<pathelement location="${qis_commons}/bin/" />
+		<fileset dir="lib/">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+
+	<target name="init">
+		<echo>Appel de build GameCommons</echo>
+		<ant dir="${qis_commons}" target="compile">
+		</ant>
+		<echo>Suppression des anciens fichiers compiles</echo>
+		<delete dir="bin/" />
+		<mkdir dir="bin/" />
+		<echo>Création du dossier de destionation</echo>
+		<delete dir="build" />
+		<mkdir dir="build" />
+		<mkdir dir="build/log" />
+		<copydir dest="build/lib" src="lib">
+		</copydir>
+		<copydir dest="build/config" src="config">
+		</copydir>
+		<copydir dest="build/lib" src="${peanuts_lib}/lib">
+		</copydir>
+	</target>
+
+	<target name="compile" depends="init">
+		<echo>Compilation du serveur</echo>
+		<javac destdir="bin/" optimize="on" debug="on" nowarn="off" source="1.6" target="1.6" encoding="iso-8859-1">
+			<src path="src" />
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile">
+		<echo>Creation de l'archive jar</echo>
+		<jar destfile="build/QiS-GameServer.jar">
+			<manifest>
+				<attribute name="Main-Class" value="com.qis.gameserver.QiSGameServer" />
+			</manifest>
+			<fileset dir="bin" />
+			<fileset dir="${qis_commons}/bin/" />
+			<fileset dir="${peanuts_lib}/bin/" />
+		</jar>
+	</target>
+
+	<target name="scripts" depends="jar">
+		<echo description="windows script" file="build/startQiS.bat">
+java -server -classpath lib/*;./QiS-GameServer.jar com.qis.gameserver.QiSGameServer
+		</echo>
+		<echo description="unix script" file="build/startQiS.sh">
+java -server -classpath lib/*:./QiS-GameServer.jar com.qis.gameserver.QiSGameServer
+		</echo>
+	</target>
+
+</project>

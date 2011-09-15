@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+	<log4j:configuration>
+
+	<!-- ********************************** General ********************************** -->
+	<!-- Appender -->
+		<!-- This appender prints information to console -->
+		<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+			<layout class="org.apache.log4j.PatternLayout">
+				<param name="ConversionPattern" value="[%p %d{dd/MM/yy HH:mm:ss}] %c:%L - %m%n" />
+			</layout>
+		</appender>
+		
+		<!-- This appender prints all that is shown in console to file -->
+		<appender name="CONSOLE_TO_FILE" class="org.apache.log4j.FileAppender">
+			<param name="file" value="log/console.log"/>
+			<param name="append" value="false"/>
+			<layout class="org.apache.log4j.PatternLayout">
+				<param name="ConversionPattern" value="[%p %d{dd/MM/yy HH:mm:ss}] %c:%L - %m%n" />
+			</layout>
+		</appender>
+
+		<appender name="ERROR_APPENDER" class="org.apache.log4j.FileAppender">
+			<param name="threshold" value="WARN"/>
+			<param name="file" value="log/errors.log"/>
+			<param name="append" value="true"/>
+			<layout class="org.apache.log4j.PatternLayout">
+				<param name="ConversionPattern" value="[%p %d{dd/MM/yy HH:mm:ss}] %c:%L - %m%n" />
+			</layout>
+		</appender>
+		
+		<appender name="CHAT_TO_FILE" class="org.apache.log4j.FileAppender">
+			<param name="file" value="log/chat.log"/>
+			<param name="append" value="true"/>
+			<layout class="org.apache.log4j.PatternLayout">
+				<param name="ConversionPattern" value="[%p %d{dd/MM/yy HH:mm:ss}] %c:%L - %m%n" />
+			</layout>
+		</appender>
+	
+	<!-- Logger -->
+	
+		<logger name="com">
+			<appender-ref ref="CONSOLE"/>
+			<appender-ref ref="CONSOLE_TO_FILE"/>
+			<appender-ref ref="ERROR_APPENDER"/>
+		</logger>
+	
+	</log4j:configuration>
