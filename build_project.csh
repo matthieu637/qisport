@@ -143,7 +143,9 @@ chmod u+x QiS-GameServer.jar
 set tmp1 = `mktemp`
 set tmp2 = `mktemp`
 
-sed 's/^QiS.session.path=.*/QiS.session.path=\/home\/matthieu\/sessions\//' config/config.properties > $tmp1
+set formated=`echo $sessionPATH | sed -e 's/\//\\\//g'`
+
+sed -e 's/^QiS.session.path=.*$/QiS.session.path='"$formated"'/' config/config.properties > $tmp1
 sed 's/QiS.main.port.*/QiS.main.port='"$port"'/' $tmp1 > $tmp2
 
 mv $tmp2 config/config.properties
