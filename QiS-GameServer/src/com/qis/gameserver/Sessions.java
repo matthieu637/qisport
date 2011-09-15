@@ -69,6 +69,7 @@ public class Sessions {
 			buffer = new BufferedReader(new BufferedReader(new InputStreamReader(fi)));
 			informations = buffer.readLine();
 		} catch (IOException e) {
+			log.error(e);
 			return false;
 		}
 
