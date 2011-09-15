@@ -1,4 +1,4 @@
-#!/bin/csh
+#!/bin/csh 
 
 #VARIABLES A MODIFIER
 #chemin vers les dossiers java
@@ -16,21 +16,27 @@ set port = '443'
 set gitPATH = 'git://github.com/matthieu637/qisport'
 
 ###
-set usage_message = 'ERREUR : usage : $0 <net/off> <rm/nrm> <all/site> \
-		     net/off : mise à jour ou simple build \
-		     rm/nrm : suppression total des jar ou non \
-		     all/site : sauvegarde du site non '
+set usage_message = "ERREUR : usage : $0 <net/off> <rm/nrm> <all/site>"
+set usage_message2 = "net/off : mise a jour ou simple build"
+set usage_message3 = "rm/nrm : suppression total des jar ou non"
+set usage_message4 = "all/site : sauvegarde du site non"
 ################################# VERIFICATION DES ARGUMENTS
 
 if( $#argv != 3 ) then
 	echo 'ERREUR : nombre d argument incorrect'
 	echo $usage_message
+	echo $usage_message2
+	echo $usage_message3
+	echo $usage_message4
 	exit(1)
 endif
 
 if( ( $1 != 'net' && $1 != 'off' ) || ( $2 != 'rm' && $2 != 'nrm' ) || ( $3 != 'all' && $3 != 'site' ) ) then
 	echo 'ERREUR : argument incorrect'
 	echo $usage_message
+	echo $usage_message2
+	echo $usage_message3
+	echo $usage_message4
 	exit(2)
 endif
 
