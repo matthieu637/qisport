@@ -4,9 +4,11 @@
 #chemin vers les dossiers java
 set workspacePATH = "~/workspace" 
 #chemin où le site sera installé
-set qisportPATH = "~/public_html/cv/projet/qisport"
+set qisportPATH = "~/public_html/cv.projet/qisport"
+
+
 #chemin où le serveur peut trouver les sessions du site
-set sessionPATH = "~/public_html/cv/projet/qisport/sessions"
+set sessionPATH = "~/public_html/cv.projet/qisport/sessions"
 
 
 
@@ -14,6 +16,10 @@ set sessionPATH = "~/public_html/cv/projet/qisport/sessions"
 #port d'écoute du serveur ( peut provoquer des conflits avec https si 443 )
 set port = '443'
 set gitPATH = 'git://github.com/matthieu637/qisport'
+#chemin où le serveur peut trouver les sessions du site
+set sessionPATH = "$qisportPATH/sessions"
+
+
 
 ###
 set usage_message = "ERREUR : usage : $0 <net/off> <rm/nrm> <all/site>"
@@ -79,6 +85,7 @@ chmod -R g+rx $qisportPATH
 chmod -R o-rwx $qisportPATH
 chmod -R g+w $qisportPATH/cache
 chmod -R g+w $qisportPATH/templates_c
+chmod g+w $qisportPATH/sessions
 
 #suppresion des fichiers inutiles
 rm -rf $qisportPATH/install
