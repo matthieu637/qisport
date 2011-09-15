@@ -7,10 +7,6 @@ set workspacePATH = "~/workspace"
 set qisportPATH = "~/public_html/cv.projet/qisport"
 
 
-#chemin où le serveur peut trouver les sessions du site
-set sessionPATH = "~/public_html/cv.projet/qisport/sessions"
-
-
 
 #CONSTANTES
 #port d'écoute du serveur ( peut provoquer des conflits avec https si 443 )
