@@ -102,12 +102,10 @@ mv $tmp1 $qisportPATH/variables.php
 rm $tmp2
 
 chmod g+rx $qisportPATH/variables.php
-chgrp http $qisportPATH/variables.php
 
 if( $3 == 'site' ) then
 
 	mv $applet_save $qisportPATH/applet.jar
-	chgrp http $qisportPATH/applet.jar
 
 	echo "Site updated"
 	exit(0)
