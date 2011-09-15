@@ -1,18 +1,25 @@
 #!/bin/csh
 
-#set echo
+#VARIABLES A MODIFIER
+#chemin vers les dossiers java
+set workspacePATH = "~/workspace" 
+#chemin où le site sera installé
+set qisportPATH = "~/public_html/cv/projet/qisport"
+#chemin où le serveur peut trouver les sessions du site
+set sessionPATH = "~/public_html/cv/projet/qisport/sessions"
 
-set workspacePATH = '/home/matthieu/workspace'
-set qisportPATH = '/home/matthieu/QI_Sport'
-set sessionPATH = '/home/matthieu/sessions/'
-set proguardPATH = "$workspacePATH/proguard4.4"
 
+
+#CONSTANTES
+#port d'écoute du serveur ( peut provoquer des conflits avec https si 443 )
 set port = '443'
-
-set svnPATH = 'svn://matthieu637.homelinux.net/qisport/trunk'
+set gitPATH = 'git://github.com/matthieu637/qisport'
 
 ###
-set usage_message = 'ERREUR : usage : $0 <net/off> <rm/nrm> <all/site>'
+set usage_message = 'ERREUR : usage : $0 <net/off> <rm/nrm> <all/site> \
+		     net/off : mise à jour ou simple build \
+		     rm/nrm : suppression total des jar ou non \
+		     all/site : sauvegarde du site non '
 ################################# VERIFICATION DES ARGUMENTS
 
 if( $#argv != 3 ) then
@@ -27,10 +34,6 @@ if( ( $1 != 'net' && $1 != 'off' ) || ( $2 != 'rm' && $2 != 'nrm' ) || ( $3 != '
 	exit(2)
 endif
 
-if($3 == 'all' && !( -e $proguardPATH/lib ))  then
-	echo "Error : check proguard in $proguardPATH/lib"
-	exit(3)
-endif
 
 ################################# UPDATE WORKSPACE
 
@@ -43,9 +46,9 @@ cd $workspacePATH
 
 if( $1 == 'net' ) then
 	if( $2 == 'rm' ) then
-		svn checkout $svnPATH --username read --password readme
+	 	git clone $gitPATH . 
 	else
-		svn update trunk
+		git pull .
 	endif
 endif
 
@@ -63,14 +66,9 @@ if( -e $qisportPATH ) then
 endif
 
 #export dossier
-if( $1 == 'net') then
-	svn export $workspacePATH/trunk/QI_Sport/ $qisportPATH --quiet
-else
-	cp -r $workspacePATH/trunk/QI_Sport/ $qisportPATH
-endif
+cp -r $workspacePATH/QI_Sport/ $qisportPATH
 
 #droit sur dossier
-chown -R matthieu:http $qisportPATH
 chmod -R g+rx $qisportPATH
 chmod -R o-rwx $qisportPATH
 chmod -R g+w $qisportPATH/cache
@@ -87,7 +85,7 @@ rm -rf $qisportPATH/.buildpath
 set tmp1 = `mktemp`
 set tmp2 = `mktemp`
 
-sed 's/define("DEBUG",.*/define("DEBUG","FALSE");/' $workspacePATH/trunk/QI_Sport/variables.php > $tmp1
+sed 's/define("DEBUG",.*/define("DEBUG","FALSE");/' $workspacePATH/QI_Sport/variables.php > $tmp1
 sed 's/define("HOST_APPLET",.*/define("HOST_APPLET","82.232.147.48");/' $tmp1 > $tmp2
 sed 's/define("APPLET_PATH",.*/define("APPLET_PATH","applet.jar");/' $tmp2 > $tmp1 
 
@@ -109,33 +107,20 @@ if( $3 == 'site' ) then
 	exit(0)
 endif
 
-################################# APPLET PROTECTION WITH PROGUARD
+################################# BUILD APPLET
 
-cd $workspacePATH/trunk/QiS-GameApplet/
+cd $workspacePATH/QiS-GameApplet/
 ant -buildfile build.xml
 
+chmod g+rx applet.jar
+chmod o-rwx applet.jar
 
-mv applet.jar $proguardPATH/lib/
-cp $workspacePATH/trunk/QiS-GameApplet/proguard.conf $proguardPATH/lib/
-
-
-cd $proguardPATH/lib/
-java -jar proguard.jar @proguard.conf > /dev/null
-
-rm applet.jar
-rm proguard.conf
-
-chmod g+rx out.jar
-chmod o-rwx out.jar
-
-mv out.jar $qisportPATH/applet.jar
-
-chgrp http $qisportPATH/applet.jar
+mv applet.jar $qisportPATH/
 
 ################################# BUILD SERVER
 
 
-cd $workspacePATH/trunk/QiS-GameServer
+cd $workspacePATH/QiS-GameServer
 
 if ( -e build ) then
 	rm -rf build
