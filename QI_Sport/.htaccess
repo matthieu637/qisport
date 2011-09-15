@@ -1,4 +1,5 @@
 php_value session.save_path "0;644;./sessions/"
+php_value session.gc_probability "1"
 
 <Files "variables.php">
 Order Allow,Deny
