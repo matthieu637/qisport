@@ -5,12 +5,13 @@
 set workspacePATH = "~/workspace" 
 #chemin où le site sera installé
 set qisportPATH = "~/public_html/cv.projet/qisport"
-
+#ip du serveur
+set ipServ="neo.dyndns-web.com"
 
 
 #CONSTANTES
 #port d'écoute du serveur ( peut provoquer des conflits avec https si 443 )
-set port = '443'
+set port = '8080'
 set gitPATH = 'git://github.com/matthieu637/qisport'
 #chemin où le serveur peut trouver les sessions du site
 set sessionPATH = "$qisportPATH/sessions"
@@ -95,7 +96,7 @@ set tmp1 = `mktemp`
 set tmp2 = `mktemp`
 
 sed 's/define("DEBUG",.*/define("DEBUG","FALSE");/' $workspacePATH/QI_Sport/variables.php > $tmp1
-sed 's/define("HOST_APPLET",.*/define("HOST_APPLET","82.232.147.48");/' $tmp1 > $tmp2
+sed 's/define("HOST_APPLET",.*/define("HOST_APPLET","'"$ipServ"'");/' $tmp1 > $tmp2
 sed 's/define("APPLET_PATH",.*/define("APPLET_PATH","applet.jar");/' $tmp2 > $tmp1 
 
 sed 's/define("PORT_APPLET".*/define("PORT_APPLET","'"$port"'");/' $tmp1 > $tmp2
