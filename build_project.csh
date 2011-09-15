@@ -13,8 +13,8 @@ set ipServ="neo.dyndns-web.com"
 #port d'écoute du serveur ( peut provoquer des conflits avec https si 443 )
 set port = '8080'
 set gitPATH = 'git://github.com/matthieu637/qisport'
-#chemin où le serveur peut trouver les sessions du site
-set sessionPATH = "$qisportPATH/sessions"
+#chemin où le serveur peut trouver les sessions du site, attention au dernier /
+set sessionPATH = "$qisportPATH/sessions/"
 
 
 
